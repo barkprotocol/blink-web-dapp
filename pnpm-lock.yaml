@@ -185,6 +185,9 @@ importers:
       stripe:
         specifier: ^16.12.0
         version: 16.12.0
+      styles.css:
+        specifier: link:@solana/wallet-adapter-react-ui/styles.css
+        version: link:@solana/wallet-adapter-react-ui/styles.css
       tailwind-merge:
         specifier: ^2.5.2
         version: 2.5.2
