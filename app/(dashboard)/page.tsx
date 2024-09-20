@@ -23,7 +23,7 @@ export default function HomePage() {
                 essential integrations.
               </p>
               <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
-                <a href="https://your-link.com" target="_blank" rel="noopener noreferrer">
+                <a href="/pages/blink/create" target="_blank" rel="noopener noreferrer">
                   <Button className="bg-gray-800 hover:bg-gray-950 text-white border border-gray-100 rounded-md text-md px-8 py-5 inline-flex items-center justify-center transition duration-100 ease-in-out transform hover:scale-100">
                     Create your Blink
                     <ArrowRight className="ml-2 h-5 w-5" />
