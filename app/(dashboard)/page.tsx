@@ -18,14 +18,14 @@ export default function HomePage() {
                 <span className="block text-[#CBB5A7]">Faster Than Ever</span>
               </h1>
               <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                Launch your Blink As A Service product in record time with our powerful,
-                ready-to-use template. Packed with modern technologies and
-                essential integrations.
+                Experience seamless development and launch your Blink As A Service product with ease. 
+                Our powerful platform is packed with modern technologies and essential integrations, 
+                making it simpler than ever to innovate.
               </p>
               <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
-                <a href="./components/ui/layout/blink-creation-process" target="_blank" rel="noopener noreferrer">
+                <a href="./pages/blink" target="_blank" rel="noopener noreferrer">
                   <Button className="bg-gray-800 hover:bg-gray-950 text-white border border-gray-100 rounded-md text-md px-8 py-5 inline-flex items-center justify-center transition duration-100 ease-in-out transform hover:scale-100">
-                    Create your Blink
+                    Go Blinkboard!
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </a>
@@ -116,7 +116,7 @@ export default function HomePage() {
       <SubscriptionSection />
 
       {/* Footer Section */}
-      <footer className="py-12 bg-white text-dark-400">
+      <footer className="py-12 bg-gray-50 text-dark-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between">
             <p className="text-base">&copy; 2024 BARK Protocol. All rights reserved.</p>
@@ -159,10 +159,11 @@ function FAQAccordion() {
   const [activeIndex, setActiveIndex] = useState(null);
   
   const faqs = [
-    { question: "What is Blink As A Service?", answer: "Blink As A Service (BaaS) is a platform that allows you to quickly deploy custom solutions with Web3 payments, Solana Actions, NFT minting, staking, and modern integrations." },
-    { question: "How do I customize my Blink?", answer: "You can modify your Blink by using our pre-built templates and integrations, tailoring them to your specific needs." },
-    { question: "What payment gateways are supported?", answer: "We support multiple payment gateways including Stripe, SolanaPay, PayPal, and more." },
-    { question: "Is support available?", answer: "Yes, our support team is available 24/7 to help you with any queries or issues." },
+    { question: "What is Blink As A Service?", answer: "Blink As A Service (BaaS) provides a streamlined platform for rapidly deploying custom solutions with Web3 payments, Solana actions, NFT minting, and staking capabilities." },
+    { question: "How can I customize my Blink?", answer: "Easily modify your Blink using our pre-built templates and integrations, allowing you to tailor the experience to your specific requirements." },
+    { question: "Which payment gateways do you support?", answer: "We offer multiple payment gateways, including Stripe, SolanaPay, and PayPal, ensuring flexibility for your transactions." },
+    { question: "Is there a trial period available?", answer: "Yes, we offer a 14-day free trial to help you explore our platform and its capabilities before committing." },
+    { question: "How do I get started?", answer: "Simply sign up for an account, choose a template, and start customizing your Blink right away!" },
   ];
 
   return (
@@ -172,12 +173,13 @@ function FAQAccordion() {
           <button 
             aria-expanded={activeIndex === index} 
             onClick={() => setActiveIndex(activeIndex === index ? null : index)} 
-            className="flex justify-between items-center w-full p-4 text-left bg-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-300 transition">
-            <span className="font-medium text-gray-900">{faq.question}</span>
+            className="flex items-center justify-between w-full text-left p-4 bg-white border rounded-md focus:outline-none transition duration-200 ease-in-out hover:bg-gray-50"
+          >
+            <span className="font-medium text-gray-800">{faq.question}</span>
             <span className="ml-2">{activeIndex === index ? '-' : '+'}</span>
           </button>
           {activeIndex === index && (
-            <div className="p-4 bg-gray-100 rounded-lg mt-2">
+            <div className="mt-2 p-4 border border-gray-200 rounded-md bg-gray-50">
               <p className="text-gray-700">{faq.answer}</p>
             </div>
           )}
@@ -188,32 +190,19 @@ function FAQAccordion() {
 }
 
 function SubscriptionSection() {
-  const [email, setEmail] = useState('');
-
-  const handleSubscription = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Subscribed:", email);
-    setEmail('');
-  };
-
   return (
-    <section className="bg-gray-900 text-white py-12 flex items-center justify-center">
+    <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl font-extrabold mb-4">Stay Updated</h2>
-        <p className="text-lg mb-8">Subscribe to our newsletter for the latest news and exclusive offers.</p>
-        <form onSubmit={handleSubscription} className="flex justify-center items-center">
-          <input 
-            type="email" 
-            placeholder="Enter your email" 
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="p-2 rounded-md bg-gray-800 text-white placeholder-gray-400 border border-transparent focus:border-[#CBB5A7] focus:ring-2 focus:ring-[#CBB5A7] transition duration-200 ease-in-out flex-grow"
-            required
+        <h2 className="text-3xl font-extrabold text-gray-900 mb-4">Stay Updated</h2>
+        <p className="mb-8 text-lg text-gray-500">Subscribe to our newsletter to receive the latest news and updates.</p>
+        <div className="flex flex-col sm:flex-row justify-center items-center">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="border border-gray-300 rounded-md p-2 mr-2 mb-4 sm:mb-0 sm:mr-4 w-full sm:w-64"
           />
-          <Button type="submit" className="bg-[#CBB5A7] text-gray-900 rounded-md px-6 ml-4 transition duration-200 ease-in-out hover:bg-[#CBB5A7]/80">
-            Subscribe
-          </Button>
-        </form>
+          <Button className="bg-gray-800 hover:bg-gray-950 text-white px-6 py-5 rounded-md">Subscribe</Button>
+        </div>
       </div>
     </section>
   );

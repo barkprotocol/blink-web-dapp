@@ -24,9 +24,8 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["*"],              
+      "@/components/*": ["components/*"]
     }
   },
   "include": [
