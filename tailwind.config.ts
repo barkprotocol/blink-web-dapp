@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        oswald: ['Oswald', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
@@ -62,4 +66,5 @@ const config: Config = {
     require('tailwindcss-animate'),
   ],
 };
+
 export default config;

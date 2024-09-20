@@ -23,12 +23,7 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem
+    --radius: 0.5rem;
   }
 
   .dark {
@@ -51,20 +46,88 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 
+  h1 {
+    @apply text-4xl md:text-5xl font-bold;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-semibold;
+  }
+
+  p {
+    @apply text-base md:text-lg;
+  }
+
+  /* Button Variants */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary-foreground hover:text-primary transition duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary-foreground hover:text-secondary transition duration-200;
+  }
+
+  .btn-destructive {
+    @apply bg-destructive text-destructive-foreground hover:bg-destructive-foreground hover:text-destructive transition duration-200;
+  }
+
+  input,
+  textarea {
+    @apply border border-border rounded-md px-4 py-2 focus:ring-2 focus:ring-primary transition duration-200;
+  }
+
+  input:focus,
+  textarea:focus {
+    @apply border-primary;
+  }
+
+  /* Utility Classes for Flexbox and Grid */
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .grid-gap {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+  }
+
+  /* Hover Effects on Cards */
+  .card {
+    @apply transition-transform transform hover:scale-105 shadow-lg;
+  }
+
+  /* Dark Mode Improvements */
+  .dark .card {
+    @apply bg-card text-card-foreground;
+  }
+
+  /* Accessibility Enhancements */
   body {
-    @apply bg-background text-foreground;
+    @apply text-muted-foreground;
+  }
+
+  .text-link {
+    @apply text-primary underline hover:text-primary-foreground;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary rounded;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
   }
 }
