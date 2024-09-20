@@ -16,7 +16,7 @@ import Image from 'next/image'
 
 const BlinkDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState("overview")
-  const { connected, publicKey } = useWallet()
+  const { connected, publicKey, disconnect } = useWallet()
   const { connection } = useConnection()
   const [balance, setBalance] = useState<number | null>(null)
   const [loading, setLoading] = useState(true)
@@ -24,8 +24,8 @@ const BlinkDashboard: React.FC = () => {
 
   const mockBlinks = [
     { id: 1, title: "Digital Art Collection", sales: 12, revenue: 5.4 },
-    { id: 2, title: "Music Album NFT", sales: 8, revenue: 3.2 },
-    { id: 3, title: "Virtual Real Estate", sales: 3, revenue: 15.0 },
+    { id: 2, title: "Compressed NFT", sales: 8, revenue: 3.2 },
+    { id: 3, title: "Donations", sales: 3, revenue: 15.0 },
   ]
 
   const filteredBlinks = mockBlinks.filter(blink => 
@@ -53,7 +53,7 @@ const BlinkDashboard: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-sand-100 to-sand-200">
+    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200">
       <div className="container mx-auto px-4 py-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -64,13 +64,17 @@ const BlinkDashboard: React.FC = () => {
             <CardHeader className="bg-gradient-to-r from-gray-800 to-gray-900 text-white">
               <div className="flex justify-between items-center">
                 <div className="flex items-center">
-                  <Image src="https://ucarecdn.com/74392932-2ff5-4237-a1fa-e0fd15725ecc/bark.svg" alt="Blink Logo" width={40} height={40} className="mr-3" />
+                  <Image src="https://ucarecdn.com/74392932-2ff5-4237-a1fa-e0fd15725ecc/bark.svg" alt="BARK Blink Logo" width={40} height={40} className="mr-3" />
                   <div>
-                    <CardTitle className="text-3xl font-bold">Blink Dashboard</CardTitle>
+                    <CardTitle className="text-3xl font-bold">Blinkboard</CardTitle>
                     <CardDescription className="text-gray-300">Manage and track your digital assets</CardDescription>
                   </div>
                 </div>
-                <WalletMultiButton className="bg-sand-500 hover:bg-sand-600 text-black" />
+                {!connected ? (
+                  <Button className="bg-white text-black" onClick={() => {}}>Select Wallet</Button>
+                ) : (
+                  <Button className="bg-white text-black" onClick={disconnect}>Change Wallet</Button>
+                )}
               </div>
             </CardHeader>
             <CardContent className="p-6 bg-white">
@@ -91,11 +95,16 @@ const BlinkDashboard: React.FC = () => {
                 </div>
               )}
               <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-                <TabsList className="grid w-full grid-cols-4 bg-sand-100">
-                  <TabsTrigger value="overview" className="data-[state=active]:bg-sand-200">Overview</TabsTrigger>
-                  <TabsTrigger value="create" className="data-[state=active]:bg-sand-200">Create Blink</TabsTrigger>
-                  <TabsTrigger value="analytics" className="data-[state=active]:bg-sand-200">Analytics</TabsTrigger>
-                  <TabsTrigger value="settings" className="data-[state=active]:bg-sand-200">Settings</TabsTrigger>
+                <TabsList className="flex space-x-1 bg-gray-800 p-2 rounded-md">
+                  {["overview", "swap", "nft", "donations", "crowdfunding", "analytics", "settings"].map(tab => (
+                    <TabsTrigger 
+                      key={tab}
+                      value={tab} 
+                      className="data-[state=active]:bg-gray-800 text-white rounded-md px-4 py-2"
+                    >
+                      {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                    </TabsTrigger>
+                  ))}
                 </TabsList>
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -138,7 +147,7 @@ const BlinkDashboard: React.FC = () => {
                                         <h3 className="font-semibold text-gray-800">{blink.title}</h3>
                                         <p className="text-sm text-gray-500">{blink.sales} sales</p>
                                       </div>
-                                      <p className="font-bold text-sand-600">{blink.revenue} SOL</p>
+                                      <p className="font-bold text-gray-600">{blink.revenue} SOL</p>
                                     </CardContent>
                                   </Card>
                                 ))
@@ -151,7 +160,7 @@ const BlinkDashboard: React.FC = () => {
                           )}
                         </CardContent>
                         <CardFooter>
-                          <Button onClick={() => setActiveTab("create")} className="w-full bg-sand-500 hover:bg-sand-600 text-black">
+                          <Button onClick={() => setActiveTab("create")} className="w-full bg-gray-800 hover:bg-gray-900 text-white">
                             <PlusCircle className="mr-2 h-4 w-4" />
                             Create New Blink
                           </Button>
@@ -165,7 +174,7 @@ const BlinkDashboard: React.FC = () => {
                       <Card>
                         <CardHeader>
                           <CardTitle className="text-2xl font-semibold flex items-center text-gray-800">
-                            <BarChart2 className="mr-2 h-5 w-5 text-sand-500" />
+                            <BarChart2 className="mr-2 h-5 w-5 text-gray-500" />
                             Analytics
                           </CardTitle>
                         </CardHeader>
@@ -178,7 +187,7 @@ const BlinkDashboard: React.FC = () => {
                       <Card>
                         <CardHeader>
                           <CardTitle className="text-2xl font-semibold flex items-center text-gray-800">
-                            <Settings className="mr-2 h-5 w-5 text-sand-500" />
+                            <Settings className="mr-2 h-5 w-5 text-gray-500" />
                             Settings
                           </CardTitle>
                         </CardHeader>
