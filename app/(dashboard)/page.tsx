@@ -107,7 +107,7 @@ export default function HomePage() {
       {/* FAQ Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-12">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-12">FAQ</h2>
           <FAQAccordion />
         </div>
       </section>
@@ -121,8 +121,8 @@ export default function HomePage() {
           <div className="flex justify-between">
             <p className="text-base">&copy; 2024 BARK Protocol. All rights reserved.</p>
             <nav>
-              <a href="#" className="text-gray-400 hover:text-gray-600 mx-2">Terms of Use</a>
-              <a href="#" className="text-gray-400 hover:text-gray-600 mx-2">Privacy Policy</a>
+              <a href="/pages/terms-of-use" className="text-gray-400 hover:text-gray-600 mx-2">Terms of Use</a>
+              <a href="/pages/privacy-policy" className="text-gray-400 hover:text-gray-600 mx-2">Privacy Policy</a>
             </nav>
           </div>
         </div>
@@ -198,17 +198,20 @@ function SubscriptionSection() {
   return (
     <section className="py-16 bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl font-extrabold text-white mb-6">Stay Updated</h2>
-        <p className="text-lg text-gray-400 mb-4">Subscribe to our newsletter for the latest news and updates.</p>
-        <form className="max-w-lg mx-auto flex flex-col sm:flex-row" onSubmit={handleSubscribe}>
+        <h2 className="text-3xl font-extrabold text-white mb-4">Stay Updated</h2>
+        <p className="text-lg text-gray-400 mb-6">Subscribe to our newsletter for the latest updates and offers.</p>
+        <form className="max-w-lg mx-auto flex flex-col sm:flex-row items-center" onSubmit={handleSubscribe}>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="flex-1 px-4 py-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-800"
+            className="flex-1 h-10 px-4 mb-4 sm:mb-0 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-800"
             placeholder="Enter your email"
           />
-          <Button type="submit" className="mt-4 sm:mt-0 sm:ml-5 bg-gray-100 hover:bg-gray-700 text-gray-900 px-8 py-3 rounded-md flex-shrink-0">
+          <Button 
+            type="submit" 
+            className="h-10 bg-gray-100 hover:bg-gray-700 text-gray-900 px-6 rounded-md flex-shrink-0 transition duration-200 ease-in-out mt-4 sm:mt-0 sm:ml-4"
+          >
             Subscribe
           </Button>
         </form>
