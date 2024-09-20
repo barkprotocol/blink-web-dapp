@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, CreditCard, Database, Zap, Shield } from 'lucide-react';
 import Image from 'next/image';
@@ -20,13 +23,9 @@ export default function HomePage() {
                 essential integrations.
               </p>
               <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
-                <a
-                  href="https://vercel.com/templates/next.js/next-js-baas-starter"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button className="bg-white hover:bg-gray-100 text-black border border-gray-200 rounded-md text-lg px-8 py-4 inline-flex items-center justify-center transition duration-200 ease-in-out transform hover:scale-105">
-                    Deploy your own
+                <a href="https://your-link.com" target="_blank" rel="noopener noreferrer">
+                  <Button className="bg-gray-800 hover:bg-gray-950 text-white border border-gray-100 rounded-md text-md px-8 py-5 inline-flex items-center justify-center transition duration-100 ease-in-out transform hover:scale-100">
+                    Create your Blink
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </a>
@@ -50,9 +49,7 @@ export default function HomePage() {
       {/* Features Section */}
       <section className="py-16 bg-gray-50 w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-12">
-            Key Features
-          </h2>
+          <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-12">Key Features</h2>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <FeatureCard
               icon={<Zap className="h-6 w-6" />}
@@ -81,9 +78,7 @@ export default function HomePage() {
       {/* How it Works Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-12">
-            How it Works
-          </h2>
+          <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-12">How it Works</h2>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <HowItWorksCard
               step={1}
@@ -108,6 +103,30 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-12">Frequently Asked Questions</h2>
+          <FAQAccordion />
+        </div>
+      </section>
+
+      {/* Subscription Section */}
+      <SubscriptionSection />
+
+      {/* Footer Section */}
+      <footer className="py-12 bg-white text-dark-400">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between">
+            <p className="text-base">&copy; 2024 BARK Protocol. All rights reserved.</p>
+            <nav>
+              <a href="#" className="text-gray-400 hover:text-gray-600 mx-2">Terms of Use</a>
+              <a href="#" className="text-gray-400 hover:text-gray-600 mx-2">Privacy Policy</a>
+            </nav>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
@@ -128,10 +147,75 @@ function HowItWorksCard({ step, title, description }) {
   return (
     <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm transition duration-200 ease-in-out hover:shadow-lg">
       <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#CBB5A7] text-white mb-4">
-        <span className="text-lg font-semibold">{step}</span>
+        {step}
       </div>
       <h3 className="text-lg font-medium text-gray-900 mb-2">{title}</h3>
       <p className="text-base text-gray-500">{description}</p>
     </div>
+  );
+}
+
+function FAQAccordion() {
+  const [activeIndex, setActiveIndex] = useState(null);
+  
+  const faqs = [
+    { question: "What is Blink As A Service?", answer: "Blink As A Service (BaaS) is a platform that allows you to quickly deploy custom solutions with Web3 payments, Solana Actions, NFT minting, staking, and modern integrations." },
+    { question: "How do I customize my Blink?", answer: "You can modify your Blink by using our pre-built templates and integrations, tailoring them to your specific needs." },
+    { question: "What payment gateways are supported?", answer: "We support multiple payment gateways including Stripe, SolanaPay, PayPal, and more to fit your business needs." },
+  ];
+
+  return (
+    <div className="space-y-4">
+      {faqs.map((faq, index) => (
+        <div key={index} className="bg-white p-6 rounded-lg shadow-md cursor-pointer" onClick={() => setActiveIndex(activeIndex === index ? null : index)}>
+          <h4 className="text-lg font-medium text-gray-900 mb-2 flex justify-between">
+            {faq.question}
+            <span className={`transform transition-transform ${activeIndex === index ? 'rotate-180' : ''}`}>
+              ▼
+            </span>
+          </h4>
+          {activeIndex === index && <p className="text-base text-gray-500">{faq.answer}</p>}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function SubscriptionSection() {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email) {
+      setMessage(`Thank you for subscribing with ${email}!`);
+      setEmail('');
+    } else {
+      setMessage('Please enter a valid email address.');
+    }
+  };
+
+  return (
+    <section className="py-16 bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 className="text-3xl font-extrabold text-white mb-6">Stay Updated</h2>
+        <p className="text-lg text-gray-400 mb-4">Subscribe to our newsletter for the latest news and updates.</p>
+        <form className="max-w-lg mx-auto flex flex-col sm:flex-row" onSubmit={handleSubscribe}>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="flex-1 px-4 py-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-800"
+            placeholder="Enter your email"
+          />
+          <Button type="submit" className="mt-4 sm:mt-0 sm:ml-5 bg-gray-100 hover:bg-gray-700 text-gray-900 px-8 py-3 rounded-md flex-shrink-0">
+            Subscribe
+          </Button>
+        </form>
+        {message && (
+          <p className="mt-4 text-lg text-green-400">{message}</p>
+        )}
+      </div>
+    </section>
   );
 }
