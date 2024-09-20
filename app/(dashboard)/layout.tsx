@@ -1,7 +1,10 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
 import { useState } from 'react';
+import { useUser } from '@/lib/auth';
+import { signOut } from '@/app/(login)/actions';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Home, LogOut } from 'lucide-react';
 import {
@@ -11,9 +14,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { useUser } from '@/lib/auth';
-import { signOut } from '@/app/(login)/actions';
-import { useRouter } from 'next/navigation';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,24 +35,14 @@ function Header() {
             alt="BLINK Logo"
             className="h-8 w-auto"
           />
-          <span className="ml-2 text-xl font-semibold text-gray-900">BLINK</span>
+          <span className="ml-2 text-xl font-semibold text-gray-900 blink">BLINK</span>
         </Link>
         <nav className="flex items-center space-x-4">
-          <Link href="/" className="text-sm font-medium text-gray-700 hover:text-gray-900">
-            Home
-          </Link>
-          <Link href="/features" className="text-sm font-medium text-gray-700 hover:text-gray-900">
-            Features
-          </Link>
-          <Link href="/pricing" className="text-sm font-medium text-gray-700 hover:text-gray-900">
-            Pricing
-          </Link>
-          <Link href="/pages/about" className="text-sm font-medium text-gray-700 hover:text-gray-900">
-            About
-          </Link>
-          <Link href="/pages/contact" className="text-sm font-medium text-gray-700 hover:text-gray-900">
-            Contact
-          </Link>
+          <Link href="/" className="text-sm font-medium text-gray-700 hover:text-gray-900">Home</Link>
+          <Link href="/features" className="text-sm font-medium text-gray-700 hover:text-gray-900">Features</Link>
+          <Link href="/pricing" className="text-sm font-medium text-gray-700 hover:text-gray-900">Pricing</Link>
+          <Link href="/pages/about" className="text-sm font-medium text-gray-700 hover:text-gray-900">About</Link>
+          <Link href="/pages/contact" className="text-sm font-medium text-gray-700 hover:text-gray-900">Contact</Link>
         </nav>
         <div className="flex items-center space-x-4">
           {user ? (
@@ -61,10 +51,7 @@ function Header() {
                 <Avatar className="cursor-pointer size-9">
                   <AvatarImage alt={user.name || ''} />
                   <AvatarFallback>
-                    {user.email
-                      .split(' ')
-                      .map((n) => n[0])
-                      .join('')}
+                    {user.email.split(' ').map((n) => n[0]).join('')}
                   </AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
@@ -86,10 +73,7 @@ function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Button
-              asChild
-              className="bg-black hover:bg-gray-800 text-white text-sm px-4 py-2 rounded-md"
-            >
+            <Button asChild className="bg-black hover:bg-gray-800 text-white text-sm px-4 py-2 rounded-md">
               <Link href="/sign-up">Sign Up</Link>
             </Button>
           )}

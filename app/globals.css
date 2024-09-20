@@ -98,9 +98,9 @@
   }
   
   .blink {
-    animation: blink 1s step-end infinite;
-  }  
-
+    animation: blink 1s infinite;
+  }
+    
   /* Utility Classes for Flexbox and Grid */
   .flex-center {
     @apply flex items-center justify-center;
