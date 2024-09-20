@@ -1,7 +1,7 @@
 # BARK Blink As A Service
 **proof of concept**
 
-**Overview**
+## Overview 
 
 BARK Blink is a powerful component of Blink BaaS (Blink As A Service) that streamlines interactions with blockchain assets, particularly within the Solana ecosystem. It simplifies user engagement, enhances transaction efficiency, and provides developers with the tools needed to create rich, blockchain-enabled applications.
 
@@ -29,8 +29,8 @@ BARK Blink is a powerful component of Blink BaaS (Blink As A Service) that strea
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-repo/bark-blink
-   cd bark-blink
+   git clone https://github.com/barkprotocol/blink-as-a-service
+   cd blink-as-a-service
    ```
 
 2. **Install Dependencies**:
